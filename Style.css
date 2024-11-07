@@ -1,0 +1,159 @@
+
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures that the body takes at least the full viewport height */
+    margin: 0;
+    background-color: #f4f4f9; /* Light background color for the body */
+    transition: background 0.5s ease;
+    overflow-y: auto; /* Enables scrolling for the entire page */
+}
+
+/* Enable scrolling for mobile screens */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Enable vertical scrolling for mobile devices */
+    }
+}
+
+/* Container styling */
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Border around the box */
+    background-color: #e0f7fa; /* Soft light blue background for the container */
+}
+
+/* Heading styling */
+h2 {
+    color: #333;
+    font-size: 1.5em;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #555;
+    font-weight: bold; /* Bold labels */
+}
+
+/* Input fields styling */
+input {
+    width: 80%; /* Medium width for responsiveness */
+    max-width: 250px; /* Control maximum width */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+.calculate-btn, .reset-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(0); /* Initial position */
+}
+
+.calculate-btn:hover, .reset-btn:hover {
+    transform: translateY(-5px); /* Lift the button */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+}
+
+.calculate-btn {
+    background-color: #4CAF50; /* Green for Calculate button */
+}
+
+.reset-btn {
+    background-color: #f44336; /* Red for Reset button */
+}
+
+/* Result and messages */
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.warning {
+    color: orange;
+    font-size: 1.2em;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-size: 1.2em;
+}
+
+/* GIF container styling */
+.gif-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.gif-container img {
+    display: none;
+    width: 50%; /* Adjust size of the GIF */
+    max-width: 150px; /* Limit maximum size of the GIF */
+    border-radius: 8px;
+}
+
+#belowGif {
+    display: none;
+}
+
+#aboveGif {
+    display: none;
+}
+
+/* Increased GIF size */
+#belowGif, #aboveGif, #whistleGif {
+    width: 150px;  /* Increase width */
+    height: 150px; /* Increase height */
+}
+
+/* Small screen adjustments */
+@media (max-width: 480px) {
+    .container {
+        width: 100%; /* Full width for smaller screens */
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    input {
+        width: 90%; /* Increase input width for smaller screens */
+    }
+}
