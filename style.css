@@ -1,26 +1,18 @@
-
-
-/* General body styling */
+/* Body and container styles */
 body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensures that the body takes at least the full viewport height */
+    height: 100vh;
     margin: 0;
-    background-color: #f4f4f9; /* Light background color for the body */
+    background-color: #ffffff;
     transition: background 0.5s ease;
-    overflow-y: auto; /* Enables scrolling for the entire page */
+    overflow: auto; /* Enable scrolling when content overflows */
+    touch-action: none; /* Prevents zooming on mobile */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-/* Enable scrolling for mobile screens */
-@media (max-width: 768px) {
-    body {
-        overflow-y: auto; /* Enable vertical scrolling for mobile devices */
-    }
-}
-
-/* Container styling */
 .container {
     background-color: #ffffff;
     padding: 20px;
@@ -29,40 +21,30 @@ body {
     width: 350px;
     text-align: center;
     position: relative;
-    margin-bottom: 20px;
-    border: 1px solid #ccc; /* Border around the box */
-    background-color: #e0f7fa; /* Soft light blue background for the container */
 }
 
-/* Heading styling */
+/* Title and input styling */
 h2 {
     color: #333;
-    font-size: 1.5em;
 }
 
-/* Label styling */
 label {
     display: block;
     margin: 10px 0 5px;
     color: #555;
-    font-weight: bold; /* Bold labels */
 }
 
-/* Input fields styling */
 input {
-    width: 80%; /* Medium width for responsiveness */
-    max-width: 250px; /* Control maximum width */
-    padding: 12px;
+    width: 100%;
+    padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
 }
 
-/* Button styling */
-.calculate-btn, .reset-btn {
-    padding: 12px 25px;
+/* 3D Popup effect for "Enter Attendance" button */
+.calculate-btn {
+    padding: 15px 25px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -71,24 +53,53 @@ input {
     font-size: 1.1em;
     margin-top: 15px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Initial 3D shadow */
+    background-color: #4CAF50;
     transform: translateY(0); /* Initial position */
+    position: relative;
 }
 
-.calculate-btn:hover, .reset-btn:hover {
-    transform: translateY(-5px); /* Lift the button */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+.calculate-btn:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: translateY(-8px) scale(1.1); /* Lift the button and slightly scale */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
 }
 
-.calculate-btn {
-    background-color: #4CAF50; /* Green for Calculate button */
+.calculate-btn:active {
+    transform: translateY(4px) scale(1); /* Button pressed down with slight scaling */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Smaller shadow when clicked */
 }
+
+/* Reset Button Style */
 
 .reset-btn {
-    background-color: #f44336; /* Red for Reset button */
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Initial 3D shadow */
+    background-color: #f44336;
+    transform: translateY(0); /* Initial position */
+    position: relative;
 }
 
-/* Result and messages */
+.reset-btn:hover {
+    background-color: #e53935; /* Slightly darker red on hover */
+    transform: translateY(-8px) scale(1.1); /* Lift the button and slightly scale */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+.reset-btn:active {
+    transform: translateY(4px) scale(1); /* Button pressed down with slight scaling */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Smaller shadow when clicked */
+}
+
+/* Result Text */
 #result {
     margin-top: 15px;
     font-weight: bold;
@@ -96,6 +107,7 @@ input {
     transition: color 0.3s ease;
 }
 
+/* Warning, Success, and Error Messages */
 .warning {
     color: orange;
     font-size: 1.2em;
@@ -114,46 +126,46 @@ input {
     font-size: 1.2em;
 }
 
-/* GIF container styling */
+/* GIF container styling - hidden initially */
 .gif-container {
     margin-top: 20px;
     display: flex;
     justify-content: center;
+    align-items: center; /* Vertically center the GIF */
+    visibility: hidden; /* Keep GIFs hidden by default */
+    opacity: 0; /* Set opacity to 0 for smooth transition */
+    transition: visibility 0s, opacity 0.5s ease;
 }
 
-.gif-container img {
-    display: none;
-    width: 50%; /* Adjust size of the GIF */
-    max-width: 150px; /* Limit maximum size of the GIF */
+/* Show GIFs when result is populated */
+#result:not(:empty) ~ .gif-container {
+    visibility: visible; /* Make GIFs visible when there is content in #result */
+    opacity: 1; /* Set opacity to 1 for full visibility */
+}
+
+/* Show GIFs when result is populated */
+#result:not(:empty) ~ .gif-container img {
+    display: block; /* Show GIFs when #result has content */
+    width: 100%;
+    max-width: 300px; /* Increased max width for larger GIF */
+    height: auto;
     border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
-#belowGif {
-    display: none;
+/* Optional: Add a hover effect to GIF for interaction */
+.gif-container img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
-#aboveGif {
-    display: none;
-}
-
-/* Increased GIF size */
-#belowGif, #aboveGif, #whistleGif {
-    width: 150px;  /* Increase width */
-    height: 150px; /* Increase height */
-}
-
-/* Small screen adjustments */
+/* Small screen adjustments - ensure the GIF still looks good */
 @media (max-width: 480px) {
     .container {
-        width: 100%; /* Full width for smaller screens */
+        width: 100%;
         padding: 15px;
     }
 
-    h2 {
-        font-size: 1.3em;
-    }
-
-    input {
-        width: 90%; /* Increase input width for smaller screens */
+    .gif-container img {
+        max-width: 100%; /* Ensure GIF fits on smaller screens */
     }
 }
